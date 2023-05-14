@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://xwpehm668n74"]
+
+[ext_resource type="Script" path="res://Src/Scripts/Game.cs" id="1_0gsam"]
+[ext_resource type="PackedScene" uid="uid://y4bt2pegafq0" path="res://Src/Prefabs/Gui/ToolsUi.tscn" id="2_vmc06"]
+
+[node name="Game" type="Node2D" node_paths=PackedStringArray("_worldNode")]
+script = ExtResource("1_0gsam")
+_worldNode = NodePath("")
+
+[node name="PilePositionMark" type="Marker2D" parent="."]
+position = Vector2(188, 169)
+
+[node name="Ui" type="CanvasLayer" parent="."]
+
+[node name="ToolsUi" parent="Ui" instance=ExtResource("2_vmc06")]
+mouse_filter = 1

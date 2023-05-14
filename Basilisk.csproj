@@ -1,0 +1,14 @@
+<Project Sdk="Godot.NET.Sdk/4.0.2">
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <EnableDynamicLoading>true</EnableDynamicLoading>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Chickensoft.GoDotNet" Version="1.5.3" />
+    <PackageReference Include="Tomlyn" Version="0.16.2" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Src\Prefabs\" />
+  </ItemGroup>
+</Project>

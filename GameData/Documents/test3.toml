@@ -1,0 +1,6 @@
+﻿[attributes]
+unique_name = "letter"
+graphics = "envelope_sealed.png"
+
+[[components]]
+type = "Draggable"
