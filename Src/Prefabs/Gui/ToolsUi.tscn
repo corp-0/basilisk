@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://y4bt2pegafq0"]
+[gd_scene load_steps=5 format=3 uid="uid://y4bt2pegafq0"]
 
 [ext_resource type="Texture2D" uid="uid://db36rcv0sykns" path="res://GameData/Graphics/icon.svg" id="1_pne1a"]
+[ext_resource type="Script" path="res://Src/Scripts/Ui/ToolsUiController.cs" id="2_itd2d"]
 
 [sub_resource type="FontVariation" id="FontVariation_qsd2q"]
 
@@ -15,42 +16,33 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 
-[node name="Control" type="Control" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -446.0
-offset_right = 88.0
-offset_bottom = 174.0
-grow_horizontal = 0
-scale = Vector2(0.75, 0.75)
-metadata/_edit_group_ = true
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -534.0
-offset_top = 19.0
-offset_bottom = 151.0
+offset_left = -545.0
+offset_top = 16.0
+offset_right = -11.0
+offset_bottom = 148.0
 grow_horizontal = 0
 size_flags_horizontal = 8
 size_flags_vertical = 0
 alignment = 2
+metadata/_edit_group_ = true
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Control/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
 alignment = 1
 
-[node name="TextureButton" type="TextureButton" parent="Control/VBoxContainer/HBoxContainer"]
+[node name="HandButton" type="TextureButton" parent="VBoxContainer/HBoxContainer"]
 self_modulate = Color(0.054902, 0.054902, 0.054902, 1)
 layout_mode = 2
 texture_normal = ExtResource("1_pne1a")
 
-[node name="Label" type="Label" parent="Control/VBoxContainer/HBoxContainer/TextureButton"]
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/HandButton"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -63,12 +55,12 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
 
-[node name="TextureButton2" type="TextureButton" parent="Control/VBoxContainer/HBoxContainer"]
+[node name="MagGlassButton" type="TextureButton" parent="VBoxContainer/HBoxContainer"]
 self_modulate = Color(0.054902, 0.054902, 0.054902, 1)
 layout_mode = 2
 texture_normal = ExtResource("1_pne1a")
 
-[node name="Label" type="Label" parent="Control/VBoxContainer/HBoxContainer/TextureButton2"]
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/MagGlassButton"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -81,12 +73,12 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
 
-[node name="TextureButton3" type="TextureButton" parent="Control/VBoxContainer/HBoxContainer"]
+[node name="TextureButton3" type="TextureButton" parent="VBoxContainer/HBoxContainer"]
 self_modulate = Color(0.054902, 0.054902, 0.054902, 1)
 layout_mode = 2
 texture_normal = ExtResource("1_pne1a")
 
-[node name="Label" type="Label" parent="Control/VBoxContainer/HBoxContainer/TextureButton3"]
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/TextureButton3"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -98,3 +90,8 @@ label_settings = SubResource("LabelSettings_j3q7p")
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
+
+[node name="ToolsUiController" type="Node" parent="." node_paths=PackedStringArray("_handButton", "_magnifyingGlassButton")]
+script = ExtResource("2_itd2d")
+_handButton = NodePath("../VBoxContainer/HBoxContainer/HandButton")
+_magnifyingGlassButton = NodePath("../VBoxContainer/HBoxContainer/MagGlassButton")

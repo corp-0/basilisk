@@ -1,6 +1,0 @@
-﻿[attributes]
-unique_name = "photo"
-graphics = "unitystation.png"
-
-[[components]]
-type = "Draggable"

@@ -23,7 +23,9 @@ config/icon="res://GameData/Graphics/icon.svg"
 
 [autoload]
 
-GameObjectFactory="*res://Src/Autoloads/GameObjectFactory.tscn"
+PlayerToolState="*res://Src/Autoloads/PlayerToolState.tscn"
+TutorialTracker="*res://Src/Autoloads/TutorialTracker.tscn"
+ShortTermemoryManager="*res://Src/Autoloads/ShortTermemoryManager.tscn"
 
 [display]
 

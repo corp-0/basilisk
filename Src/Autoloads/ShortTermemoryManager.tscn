@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://bjgdjvv7li8ec"]
+
+[ext_resource type="Script" path="res://Src/Autoloads/ShortTermMemoryManager.cs" id="1_t7eln"]
+
+[node name="ShortTermemoryManager" type="Node"]
+script = ExtResource("1_t7eln")
+_maxMemories = 3

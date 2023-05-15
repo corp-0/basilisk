@@ -1,8 +1,0 @@
-[gd_scene load_steps=3 format=3 uid="uid://bakixrxlv0dha"]
-
-[ext_resource type="Script" path="res://Src/Scripts/Services/Factories/GameObjectFactory.cs" id="1_widqy"]
-[ext_resource type="PackedScene" uid="uid://cdhydlw4rlbpn" path="res://Src/Prefabs/GameObject.tscn" id="2_mq7yu"]
-
-[node name="GameObjectFactory" type="Node"]
-script = ExtResource("1_widqy")
-_gameObjectScene = ExtResource("2_mq7yu")

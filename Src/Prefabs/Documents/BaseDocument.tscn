@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://dsqfbvse1ufkb"]
+
+[ext_resource type="Script" path="res://Src/Scripts/Interactions/Draggable.cs" id="1_7c2s5"]
+[ext_resource type="Texture2D" uid="uid://db36rcv0sykns" path="res://GameData/Graphics/icon.svg" id="1_68dj3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rcsfu"]
+
+[node name="BaseDocument" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_68dj3")
+
+[node name="Draggable" type="Area2D" parent="." node_paths=PackedStringArray("Shape2D", "Sprite")]
+script = ExtResource("1_7c2s5")
+Shape2D = NodePath("CollisionShape2D")
+Sprite = NodePath("../Sprite2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Draggable"]
+shape = SubResource("RectangleShape2D_rcsfu")
+debug_color = Color(0, 0.6, 0.701961, 0.419608)

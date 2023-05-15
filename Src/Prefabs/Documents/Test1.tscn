@@ -1,0 +1,72 @@
+[gd_scene load_steps=8 format=3 uid="uid://elux2a4v6l7i"]
+
+[ext_resource type="PackedScene" uid="uid://dsqfbvse1ufkb" path="res://Src/Prefabs/Documents/BaseDocument.tscn" id="1_yia0x"]
+[ext_resource type="Texture2D" uid="uid://6vyjrpcjgwaf" path="res://GameData/Graphics/THE_DAILY_EXAMPLE.png" id="2_gwwd4"]
+[ext_resource type="Script" path="res://Src/Scripts/Interactions/SimpleExaminable.cs" id="3_vango"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ad7bk"]
+size = Vector2(615, 52)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hhfgw"]
+size = Vector2(444, 128)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xa3av"]
+size = Vector2(458, 143)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4r37q"]
+size = Vector2(520.25, 124)
+
+[node name="Test1" instance=ExtResource("1_yia0x")]
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_gwwd4")
+
+[node name="SimpleExaminables" type="Node2D" parent="." index="2"]
+
+[node name="daily_example_01" type="Area2D" parent="SimpleExaminables" index="0" node_paths=PackedStringArray("Shape")]
+script = ExtResource("3_vango")
+ConceptUniqueId = "daily_example_01"
+Conclusion = "The daily example."
+Shape = NodePath("CollisionShape2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SimpleExaminables/daily_example_01" index="0"]
+z_index = 10
+position = Vector2(-1.5, -263)
+shape = SubResource("RectangleShape2D_ad7bk")
+debug_color = Color(0.905882, 0.172549, 0.623529, 0.419608)
+
+[node name="daily_example_03" type="Area2D" parent="SimpleExaminables" index="1" node_paths=PackedStringArray("Shape")]
+script = ExtResource("3_vango")
+ConceptUniqueId = "daily_example_02"
+Conclusion = "They are worried about time for the Godot jam running out."
+Shape = NodePath("CollisionShape2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SimpleExaminables/daily_example_03" index="0"]
+z_index = 10
+position = Vector2(0, -128)
+shape = SubResource("RectangleShape2D_hhfgw")
+debug_color = Color(0.905882, 0.172549, 0.623529, 0.419608)
+
+[node name="daily_example_04" type="Area2D" parent="SimpleExaminables" index="2" node_paths=PackedStringArray("Shape")]
+script = ExtResource("3_vango")
+ConceptUniqueId = "daily_example_03"
+Conclusion = "They are producing art materials but doesn't seem to be fast enough."
+Shape = NodePath("CollisionShape2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SimpleExaminables/daily_example_04" index="0"]
+z_index = 10
+position = Vector2(0, 27.5)
+shape = SubResource("RectangleShape2D_xa3av")
+debug_color = Color(0.905882, 0.172549, 0.623529, 0.419608)
+
+[node name="daily_example_05" type="Area2D" parent="SimpleExaminables" index="3" node_paths=PackedStringArray("Shape")]
+script = ExtResource("3_vango")
+ConceptUniqueId = "daily_example_05"
+Conclusion = "This article seems to be a temporary solution for the lack of art."
+Shape = NodePath("CollisionShape2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SimpleExaminables/daily_example_05" index="0"]
+z_index = 10
+position = Vector2(0.875, 183)
+shape = SubResource("RectangleShape2D_4r37q")
+debug_color = Color(0.905882, 0.172549, 0.623529, 0.419608)

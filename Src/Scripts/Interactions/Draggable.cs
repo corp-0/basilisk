@@ -1,48 +1,43 @@
-using System;
+using Basilisk.Autoloads;
 using Chickensoft.GoDotLog;
+using Chickensoft.GoDotNet;
 using Godot;
+using MonoCustomResourceRegistry;
 
 namespace Basilisk.Interactions;
 
-public partial class Draggable : Area2D, IComponent
+[RegisteredType(nameof(Draggable), baseType:nameof(Area2D))]
+public partial class Draggable : Area2D
 {
-	private CollisionShape2D? _shape2D;
-	public Sprite2D Sprite { get; private set; } = null!;
-	private Node2D _parent = null!;
-	
+	[Export] public CollisionShape2D Shape2D { get; private set; } = null!;
+	[Export] public Sprite2D Sprite { get; private set; } = null!;
+
 	private Vector2 _mouseOffset;
 	private readonly ILog _log = new GDLog(nameof(Draggable));
 	private bool _selected;
 	private const string INPUT_EVENT = "input_event";
 	private const string MOUSE_DOWN = "mouse_down";
-
-	public string Type => nameof(Draggable);
+	private PlayerToolState PlayerToolState => this.Autoload<PlayerToolState>();
 	
-	public void Init(Node2D parent)
+	public override void _Ready()
 	{
-		_log.Print($"Initializing DraggableComponent with parent {parent.Name}...");
-		_parent = parent;
-		Sprite = _parent.GetNodeOrNull<Sprite2D>("Sprite") ?? throw new NullReferenceException();
 		Connect(INPUT_EVENT, new Callable(this, nameof(OnInputEvent)));
-		var spriteSize = Sprite.Texture.GetSize();
-		_shape2D = new CollisionShape2D
+		Shape2D.Shape = new RectangleShape2D
 		{
-			Shape = new RectangleShape2D
-			{
-				Size = spriteSize
-			}
+			Size = Sprite.Texture.GetSize()
 		};
-		AddChild(_shape2D);
 		AddToGroup("draggable");
 	}
 
 	public void OnInputEvent(Node viewport, InputEvent @event, int shapeIndx)
 	{
+		if (PlayerToolState.CurrentTool != PlayerTool.Hand) return;
+		
 		if (@event.IsActionPressed(MOUSE_DOWN))
 		{
 			_selected = true;
 			MakeTopMost();
-			_mouseOffset = _parent.GlobalPosition - GetGlobalMousePosition();
+			_mouseOffset = GetParent<Node2D>().GlobalPosition - GetGlobalMousePosition();
 			_log.Print($"Draggable selected: {_selected}");
 			return;
 		}
@@ -56,8 +51,7 @@ public partial class Draggable : Area2D, IComponent
 	{
 		if (!_selected) return;
 		var mousePos = GetGlobalMousePosition() + _mouseOffset;
-		_parent.GlobalPosition = mousePos;
-		_log.Print($"Draggable position: {_parent.GlobalPosition}");
+		GetParent<Node2D>().GlobalPosition = mousePos;
 	}
 
 	private void MakeTopMost()
@@ -68,13 +62,13 @@ public partial class Draggable : Area2D, IComponent
 			if (draggable is not Draggable d) continue;
 			if (d == this)
 			{
-				// Increase Z-index of the selected object
 				Sprite.ZIndex++;
+				Shape2D.ZIndex++;
 			}
 			else
 			{
-				// Reset Z-index of all other objects
 				d.Sprite.ZIndex = 0;
+				d.Shape2D.ZIndex = 0;
 			}
 		}
 	}

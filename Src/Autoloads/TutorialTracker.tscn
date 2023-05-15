@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://s847f3iwlkhx"]
+
+[ext_resource type="Script" path="res://Src/Autoloads/TutorialTracker.cs" id="1_8ouv4"]
+
+[node name="TutorialTracker" type="Node"]
+script = ExtResource("1_8ouv4")
