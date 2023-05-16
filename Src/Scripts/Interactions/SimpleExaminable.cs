@@ -15,6 +15,8 @@ public partial class SimpleExaminable : Area2D
 	[Export] public string ClueId { get; private set; } = string.Empty;
 	[Export] public CollisionShape2D Shape { get; private set; } = null!;
 	private Line2D _outline = null!;
+	private Node2D Parent => GetParent<Node2D>().GetParent<Node2D>();
+	private bool IsTopMost => Parent.ZIndex > 0;
 	
 	private const string INPUT_EVENT = "input_event";
 	private const string MOUSE_DOWN = "mouse_down";
@@ -29,8 +31,6 @@ public partial class SimpleExaminable : Area2D
 	public override void _Ready()
 	{
 		_outline = new Line2D();
-		_outline.ZIndex = 100;
-		_outline.ZAsRelative = true;
 		_outline.Position = Shape.Position;
 		AddChild(_outline);
     
@@ -52,6 +52,7 @@ public partial class SimpleExaminable : Area2D
 	public void OnInputEvent(Node viewport, InputEvent @event, int shapeIndx)
 	{
 		if (PlayerToolState.CurrentTool != PlayerTool.MagnifyingGlass) return;
+		if (!IsTopMost) return;
 		
 		if (@event.IsActionPressed(MOUSE_DOWN))
 		{

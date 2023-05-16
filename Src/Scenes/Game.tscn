@@ -14,6 +14,10 @@ metadata/_edit_group_ = true
 
 [node name="Test1" parent="PilePositionMark" instance=ExtResource("2_vm4bj")]
 
+[node name="Test2" parent="PilePositionMark" instance=ExtResource("2_vm4bj")]
+z_index = 1
+position = Vector2(-63, 73)
+
 [node name="Ui" type="CanvasLayer" parent="."]
 
 [node name="ToolsUi" parent="Ui" instance=ExtResource("2_vmc06")]

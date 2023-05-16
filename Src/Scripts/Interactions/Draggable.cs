@@ -17,6 +17,7 @@ public partial class Draggable : Area2D
 	private bool _selected;
 	private const string INPUT_EVENT = "input_event";
 	private const string MOUSE_DOWN = "mouse_down";
+	private Node2D Parent => GetParent<Node2D>();
 	private PlayerToolState PlayerToolState => this.Autoload<PlayerToolState>();
 	
 	public override void _Ready()
@@ -32,7 +33,7 @@ public partial class Draggable : Area2D
 	public void OnInputEvent(Node viewport, InputEvent @event, int shapeIndx)
 	{
 		if (PlayerToolState.CurrentTool != PlayerTool.Hand) return;
-		
+
 		if (@event.IsActionPressed(MOUSE_DOWN))
 		{
 			_selected = true;
@@ -62,13 +63,13 @@ public partial class Draggable : Area2D
 			if (draggable is not Draggable d) continue;
 			if (d == this)
 			{
-				Sprite.ZIndex++;
-				Shape2D.ZIndex++;
+				Parent.ZIndex++;
+				Parent.ZIndex++;
 			}
 			else
 			{
-				d.Sprite.ZIndex = 0;
-				d.Shape2D.ZIndex = 0;
+				d.Parent.ZIndex = 0;
+				d.Parent.ZIndex = 0;
 			}
 		}
 	}
