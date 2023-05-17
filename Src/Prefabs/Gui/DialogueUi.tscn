@@ -1,0 +1,135 @@
+[gd_scene load_steps=8 format=3 uid="uid://h7xhsanesfa1"]
+
+[ext_resource type="Texture2D" uid="uid://biafwvuulce3h" path="res://GameData/Graphics/dialogue_box_placeholder.png" id="1_2w8sl"]
+[ext_resource type="Script" path="res://Src/Scripts/Ui/DialogueUiController.cs" id="1_vu457"]
+
+[sub_resource type="FontFile" id="FontFile_52xqd"]
+face_index = null
+embolden = null
+transform = null
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
+
+[sub_resource type="LabelSettings" id="LabelSettings_rbw57"]
+font = SubResource("FontFile_52xqd")
+
+[sub_resource type="Animation" id="Animation_g8xc5"]
+resource_name = "show_dialogue_window"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:size")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.4, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 163), Vector2(1128, 163)]
+}
+
+[sub_resource type="Animation" id="Animation_sa7il"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1128, 163)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_s57bw"]
+_data = {
+"RESET": SubResource("Animation_sa7il"),
+"show_dialogue_window": SubResource("Animation_g8xc5")
+}
+
+[node name="DialogueUi" type="Control" node_paths=PackedStringArray("_textureRect", "_textLabel", "_animationPlayer")]
+layout_mode = 3
+anchor_top = 0.679
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 0.119995
+offset_bottom = -3.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("1_vu457")
+_textureRect = NodePath("TextureRect")
+_textLabel = NodePath("TextureRect/Label")
+_animationPlayer = NodePath("AnimationPlayer")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+visible = false
+self_modulate = Color(0.0235294, 0.0235294, 0.0235294, 1)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -563.0
+offset_top = -177.0
+offset_right = 565.0
+offset_bottom = -14.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 0
+texture = ExtResource("1_2w8sl")
+expand_mode = 1
+metadata/_edit_group_ = true
+
+[node name="Label" type="Label" parent="TextureRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 83.0
+offset_top = 25.0
+offset_right = -86.0
+offset_bottom = -25.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "This is a test dialogue. You shouldn't be able to read this in game and if you do, then we are cursed to fail."
+label_settings = SubResource("LabelSettings_rbw57")
+vertical_alignment = 1
+text_overrun_behavior = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../TextureRect")
+libraries = {
+"": SubResource("AnimationLibrary_s57bw")
+}

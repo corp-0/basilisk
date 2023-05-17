@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
-using Basilisk.Models;
 
-namespace Basilisk.Autoloads;
+namespace Basilisk.Models;
 
 public class ShortTermMemory
 {

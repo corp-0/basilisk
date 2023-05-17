@@ -1,0 +1,7 @@
+﻿[[dialogues]]
+unique_id = "system_thought_added"
+text = "A new thought has been added to your short term memory. Press [F1] to review it."
+
+[[dialogues]]
+unique_id = "system_first_time_forgetting"
+text = "The oldest thought in your mind is now forgotten. A new one has replaced it."

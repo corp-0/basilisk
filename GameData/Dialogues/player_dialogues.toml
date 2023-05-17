@@ -1,0 +1,24 @@
+﻿[[dialogues]]
+unique_id = "should_remember"
+text = "This could be important. Maybe I should try to keep it in mind."
+
+[[dialogues]]
+unique_id = "first_time_forgetting"
+text = "This is starting to be overwhelming. I don't think I can keep all these thoughts in my head."
+
+[[dialogues]]
+unique_id = "intro_1"
+text = "Just thinking on those documents being there make feel sick..."
+
+[[dialogues]]
+unique_id = "intro_2"
+text = "But I have been avoiding this for way too long."
+
+[[dialogues]]
+unique_id = "intro_3"
+text = "I need to face this..."
+
+[[dialogues]]
+unique_id = "intro_4"
+text = "I need to find out what took her away from me..."
+

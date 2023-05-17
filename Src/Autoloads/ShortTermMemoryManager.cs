@@ -14,18 +14,28 @@ public partial class ShortTermMemoryManager: Node
     private ShortTermMemory _shortTermMemory = null!;
     private TutorialTracker TutorialTracker => this.Autoload<TutorialTracker>();
     private readonly ILog _log = new GDLog(nameof(ShortTermMemoryManager));
+    private DialogueManager DialogueManager => this.Autoload<DialogueManager>();
     
     public override void _Ready()
     {
+        _log.Print($"Initialising {nameof(ShortTermMemoryManager)}...");
         _shortTermMemory = new ShortTermMemory(_maxMemories);
     }
     
     public void Add(MemorisedConceptModel memorisedConcept)
     {
+        if (TutorialTracker.FirstTimeRemembering)
+        {
+            DialogueManager.QueueDialogue("should_remember");
+            DialogueManager.QueueDialogue("system_thought_added");
+            DialogueManager.StartDialogue();
+        }
+        
         if (_shortTermMemory.Memories.Count >= _maxMemories && TutorialTracker.FirstTimeForgetting)
         {
-            //TODO: Trigger a dialog here
-            _log.Print("First time forgetting a memory. This should trigger a dialog!");
+            DialogueManager.QueueDialogue("first_time_forgetting");
+            DialogueManager.QueueDialogue("system_first_time_forgetting");
+            DialogueManager.StartDialogue();
             TutorialTracker.FirstTimeForgetting = false;
         }
         

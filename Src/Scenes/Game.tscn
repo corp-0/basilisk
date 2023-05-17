@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://xwpehm668n74"]
+[gd_scene load_steps=5 format=3 uid="uid://xwpehm668n74"]
 
 [ext_resource type="Script" path="res://Src/Scripts/Game.cs" id="1_0gsam"]
 [ext_resource type="PackedScene" uid="uid://elux2a4v6l7i" path="res://Src/Prefabs/Documents/Test1.tscn" id="2_vm4bj"]
 [ext_resource type="PackedScene" uid="uid://y4bt2pegafq0" path="res://Src/Prefabs/Gui/ToolsUi.tscn" id="2_vmc06"]
+[ext_resource type="PackedScene" uid="uid://h7xhsanesfa1" path="res://Src/Prefabs/Gui/DialogueUi.tscn" id="4_p6yas"]
 
 [node name="Game" type="Node2D" node_paths=PackedStringArray("_worldNode")]
 script = ExtResource("1_0gsam")
@@ -21,4 +22,7 @@ position = Vector2(-63, 73)
 [node name="Ui" type="CanvasLayer" parent="."]
 
 [node name="ToolsUi" parent="Ui" instance=ExtResource("2_vmc06")]
-metadata/_edit_lock_ = true
+offset_bottom = -566.0
+mouse_filter = 1
+
+[node name="DialogueUi" parent="Ui" instance=ExtResource("4_p6yas")]
