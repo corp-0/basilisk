@@ -1,7 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://elux2a4v6l7i"]
+[gd_scene load_steps=7 format=3 uid="uid://elux2a4v6l7i"]
 
 [ext_resource type="PackedScene" uid="uid://dsqfbvse1ufkb" path="res://Src/Prefabs/Documents/BaseDocument.tscn" id="1_yia0x"]
-[ext_resource type="Texture2D" uid="uid://6vyjrpcjgwaf" path="res://GameData/Graphics/THE_DAILY_EXAMPLE.png" id="2_gwwd4"]
 [ext_resource type="Script" path="res://Src/Scripts/Interactions/SimpleExaminable.cs" id="3_vango"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ad7bk"]
@@ -17,9 +16,6 @@ size = Vector2(458, 143)
 size = Vector2(520.25, 124)
 
 [node name="Test1" instance=ExtResource("1_yia0x")]
-
-[node name="Sprite2D" parent="." index="0"]
-texture = ExtResource("2_gwwd4")
 
 [node name="SimpleExaminables" type="Node2D" parent="." index="2"]
 

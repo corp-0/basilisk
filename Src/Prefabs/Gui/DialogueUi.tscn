@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://h7xhsanesfa1"]
+[gd_scene load_steps=10 format=3 uid="uid://h7xhsanesfa1"]
 
-[ext_resource type="Texture2D" uid="uid://biafwvuulce3h" path="res://GameData/Graphics/dialogue_box_placeholder.png" id="1_2w8sl"]
 [ext_resource type="Script" path="res://Src/Scripts/Ui/DialogueUiController.cs" id="1_vu457"]
+[ext_resource type="Texture2D" uid="uid://6vyjrpcjgwaf" path="res://GameData/Graphics/Documents/THE_DAILY_EXAMPLE.png" id="2_4opxo"]
+[ext_resource type="Texture2D" uid="uid://c0yolidtdkrh" path="res://GameData/Graphics/Ui/arrowBlue_right.png" id="3_7yobx"]
 
 [sub_resource type="FontFile" id="FontFile_52xqd"]
 face_index = null
@@ -16,6 +17,61 @@ cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
 
 [sub_resource type="LabelSettings" id="LabelSettings_rbw57"]
 font = SubResource("FontFile_52xqd")
+
+[sub_resource type="Animation" id="Animation_sa7il"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1128, 163)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("JumpingTriangle:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1111, 133)]
+}
+
+[sub_resource type="Animation" id="Animation_emag7"]
+resource_name = "jumping_triangle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("JumpingTriangle:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1111, 133), Vector2(1111, 116.43), Vector2(1111, 133)]
+}
 
 [sub_resource type="Animation" id="Animation_g8xc5"]
 resource_name = "show_dialogue_window"
@@ -44,40 +100,14 @@ tracks/1/keys = {
 "values": [Vector2(0, 163), Vector2(1128, 163)]
 }
 
-[sub_resource type="Animation" id="Animation_sa7il"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:size")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1128, 163)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_s57bw"]
 _data = {
 "RESET": SubResource("Animation_sa7il"),
+"jumping_triangle": SubResource("Animation_emag7"),
 "show_dialogue_window": SubResource("Animation_g8xc5")
 }
 
-[node name="DialogueUi" type="Control" node_paths=PackedStringArray("_textureRect", "_textLabel", "_animationPlayer")]
+[node name="DialogueUi" type="Control" node_paths=PackedStringArray("_backgroundImage", "_jumpingTriangle", "_textLabel", "_animationPlayer")]
 layout_mode = 3
 anchor_top = 0.679
 anchor_right = 1.0
@@ -88,31 +118,29 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 script = ExtResource("1_vu457")
-_textureRect = NodePath("TextureRect")
-_textLabel = NodePath("TextureRect/Label")
+_backgroundImage = NodePath("BackgroundImage")
+_jumpingTriangle = NodePath("BackgroundImage/JumpingTriangle")
+_textLabel = NodePath("BackgroundImage/Text")
 _animationPlayer = NodePath("AnimationPlayer")
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="BackgroundImage" type="TextureRect" parent="."]
 visible = false
 self_modulate = Color(0.0235294, 0.0235294, 0.0235294, 1)
 layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
+anchors_preset = -1
+anchor_right = 0.999
 anchor_bottom = 1.0
-offset_left = -563.0
-offset_top = -177.0
-offset_right = 565.0
-offset_bottom = -14.0
+offset_left = 101.0
+offset_top = 41.0
+offset_right = 1229.0
+offset_bottom = 204.0
 grow_horizontal = 2
 grow_vertical = 0
 mouse_filter = 0
-texture = ExtResource("1_2w8sl")
+texture = ExtResource("2_4opxo")
 expand_mode = 1
-metadata/_edit_group_ = true
 
-[node name="Label" type="Label" parent="TextureRect"]
+[node name="Text" type="Label" parent="BackgroundImage"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -128,8 +156,25 @@ label_settings = SubResource("LabelSettings_rbw57")
 vertical_alignment = 1
 text_overrun_behavior = 4
 
+[node name="JumpingTriangle" type="TextureRect" parent="BackgroundImage"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1111.0
+offset_top = 133.0
+offset_right = 1125.0
+offset_bottom = 146.999
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 1.57092
+texture = ExtResource("3_7yobx")
+expand_mode = 1
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-root_node = NodePath("../TextureRect")
+root_node = NodePath("../BackgroundImage")
 libraries = {
 "": SubResource("AnimationLibrary_s57bw")
 }

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://biafwvuulce3h"
-path="res://.godot/imported/dialogue_box_placeholder.png-55ab06b2ec6d68584843cbc173828e78.ctex"
+uid="uid://crr6322lufpfh"
+path="res://.godot/imported/buttonSquare_blue.png-bce79945a9d9f3780f6da7206ca4f40d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://GameData/Graphics/dialogue_box_placeholder.png"
-dest_files=["res://.godot/imported/dialogue_box_placeholder.png-55ab06b2ec6d68584843cbc173828e78.ctex"]
+source_file="res://GameData/Graphics/Ui/buttonSquare_blue.png"
+dest_files=["res://.godot/imported/buttonSquare_blue.png-bce79945a9d9f3780f6da7206ca4f40d.ctex"]
 
 [params]
 

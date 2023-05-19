@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b1pug4vbquvxm"
-path="res://.godot/imported/envelope_sealed.png-85e5c021e500c3464e05557bec271e6e.ctex"
+uid="uid://8oqd3uc4v82b"
+path="res://.godot/imported/zoom.png-ceb603ac5422907626785145ff61dc4a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://GameData/Graphics/envelope_sealed.png"
-dest_files=["res://.godot/imported/envelope_sealed.png-85e5c021e500c3464e05557bec271e6e.ctex"]
+source_file="res://GameData/Graphics/Ui/zoom.png"
+dest_files=["res://.godot/imported/zoom.png-ceb603ac5422907626785145ff61dc4a.ctex"]
 
 [params]
 

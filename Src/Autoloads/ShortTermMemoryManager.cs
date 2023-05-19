@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using Basilisk.Models;
 using Chickensoft.GoDotLog;
 using Chickensoft.GoDotNet;
@@ -15,6 +17,8 @@ public partial class ShortTermMemoryManager: Node
     private TutorialTracker TutorialTracker => this.Autoload<TutorialTracker>();
     private readonly ILog _log = new GDLog(nameof(ShortTermMemoryManager));
     private DialogueManager DialogueManager => this.Autoload<DialogueManager>();
+    public event Action<List<MemorisedConceptModel>>? MemoryChanged;
+    public event Action? FirstTimeRemembering;
     
     public override void _Ready()
     {
@@ -29,6 +33,8 @@ public partial class ShortTermMemoryManager: Node
             DialogueManager.QueueDialogue("should_remember");
             DialogueManager.QueueDialogue("system_thought_added");
             DialogueManager.StartDialogue();
+            FirstTimeRemembering?.Invoke();
+            TutorialTracker.FirstTimeRemembering = false;
         }
         
         if (_shortTermMemory.Memories.Count >= _maxMemories && TutorialTracker.FirstTimeForgetting)
@@ -40,6 +46,7 @@ public partial class ShortTermMemoryManager: Node
         }
         
         _shortTermMemory.Add(memorisedConcept);
+        MemoryChanged?.Invoke(new List<MemorisedConceptModel>(_shortTermMemory.Memories));
     }
     
     public bool IsInMemory(string conceptUniqueId)

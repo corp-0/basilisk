@@ -1,11 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://y4bt2pegafq0"]
+[gd_scene load_steps=6 format=3 uid="uid://y4bt2pegafq0"]
 
-[ext_resource type="Texture2D" uid="uid://db36rcv0sykns" path="res://GameData/Graphics/icon.svg" id="1_pne1a"]
+[ext_resource type="Texture2D" uid="uid://b6niyboplsqu0" path="res://GameData/Graphics/Ui/pointer.png" id="1_h34h4"]
 [ext_resource type="Script" path="res://Src/Scripts/Ui/ToolsUiController.cs" id="2_itd2d"]
+[ext_resource type="Texture2D" uid="uid://8oqd3uc4v82b" path="res://GameData/Graphics/Ui/zoom.png" id="2_uhnqy"]
 
 [sub_resource type="FontVariation" id="FontVariation_qsd2q"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_j3q7p"]
+line_spacing = 0.5
 font = SubResource("FontVariation_qsd2q")
 font_size = 18
 
@@ -24,25 +26,27 @@ layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -545.0
-offset_top = 16.0
-offset_right = -11.0
-offset_bottom = 148.0
+offset_left = -428.0
+offset_top = 1.0
+offset_right = -1.0
+offset_bottom = 118.0
 grow_horizontal = 0
 size_flags_horizontal = 8
 size_flags_vertical = 0
-alignment = 2
+alignment = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
+size_flags_vertical = 4
 alignment = 1
 
 [node name="HandButton" type="TextureButton" parent="VBoxContainer/HBoxContainer"]
-self_modulate = Color(0.054902, 0.054902, 0.054902, 1)
 layout_mode = 2
-texture_normal = ExtResource("1_pne1a")
+texture_normal = ExtResource("1_h34h4")
 
 [node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/HandButton"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -56,11 +60,11 @@ vertical_alignment = 1
 autowrap_mode = 3
 
 [node name="MagGlassButton" type="TextureButton" parent="VBoxContainer/HBoxContainer"]
-self_modulate = Color(0.054902, 0.054902, 0.054902, 1)
 layout_mode = 2
-texture_normal = ExtResource("1_pne1a")
+texture_normal = ExtResource("2_uhnqy")
 
 [node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/MagGlassButton"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -68,24 +72,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Mag glass"
-label_settings = SubResource("LabelSettings_j3q7p")
-horizontal_alignment = 1
-vertical_alignment = 1
-autowrap_mode = 3
-
-[node name="TextureButton3" type="TextureButton" parent="VBoxContainer/HBoxContainer"]
-self_modulate = Color(0.054902, 0.054902, 0.054902, 1)
-layout_mode = 2
-texture_normal = ExtResource("1_pne1a")
-
-[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/TextureButton3"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "Something else"
 label_settings = SubResource("LabelSettings_j3q7p")
 horizontal_alignment = 1
 vertical_alignment = 1

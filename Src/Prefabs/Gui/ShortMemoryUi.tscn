@@ -1,0 +1,111 @@
+[gd_scene load_steps=7 format=3 uid="uid://07vo1go3vlqc"]
+
+[ext_resource type="Script" path="res://Src/Scripts/Ui/ShortMemoryUiController.cs" id="1_4djue"]
+[ext_resource type="PackedScene" uid="uid://cbv5i5lqlb16k" path="res://Src/Prefabs/Gui/MemoryItem.tscn" id="2_x1ndd"]
+
+[sub_resource type="Animation" id="Animation_a715b"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-347, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_jy28a"]
+resource_name = "hide_short_term_memories"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-347, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_iqiot"]
+resource_name = "show_short_term_memories"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-347, 0), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_r0de4"]
+_data = {
+"RESET": SubResource("Animation_a715b"),
+"hide_short_term_memories": SubResource("Animation_jy28a"),
+"show_short_term_memories": SubResource("Animation_iqiot")
+}
+
+[node name="ShortMemoryUi" type="Control" node_paths=PackedStringArray("_animationPlayer", "_panel", "_memoriesContainer")]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -347.0
+offset_right = 42.0
+offset_bottom = 720.0
+script = ExtResource("1_4djue")
+_memoryItemScene = ExtResource("2_x1ndd")
+_animationPlayer = NodePath("AnimationPlayer")
+_panel = NodePath("TextPanel")
+_memoriesContainer = NodePath("MemoriesPanel/VBoxContainer")
+
+[node name="TextPanel" type="Panel" parent="."]
+layout_mode = 1
+offset_right = 389.0
+offset_bottom = 721.0
+
+[node name="Label" type="Label" parent="TextPanel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -1.0
+offset_top = -363.0
+offset_right = 721.0
+offset_bottom = -328.0
+rotation = 1.57079
+text = "Short term memory [F1]"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MemoriesPanel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -34.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MemoriesPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_r0de4")
+}

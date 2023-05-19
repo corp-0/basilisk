@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://6vyjrpcjgwaf"
-path="res://.godot/imported/THE_DAILY_EXAMPLE.png-f01bc70b631f3873006bb58d752240e3.ctex"
+uid="uid://c0yolidtdkrh"
+path="res://.godot/imported/arrowBlue_right.png-240ae03c6257f53e2eaf784790aa7c3e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://GameData/Graphics/THE_DAILY_EXAMPLE.png"
-dest_files=["res://.godot/imported/THE_DAILY_EXAMPLE.png-f01bc70b631f3873006bb58d752240e3.ctex"]
+source_file="res://GameData/Graphics/Ui/arrowBlue_right.png"
+dest_files=["res://.godot/imported/arrowBlue_right.png-240ae03c6257f53e2eaf784790aa7c3e.ctex"]
 
 [params]
 

@@ -10,7 +10,8 @@ namespace Basilisk.Ui;
 [RegisteredType(nameof(DialogueUiController), baseType: nameof(Control))]
 public partial class DialogueUiController: Control
 {
-    [Export] private TextureRect _textureRect = null!;
+    [Export] private TextureRect _backgroundImage = null!;
+    [Export] private TextureRect _jumpingTriangle = null!;
     [Export] private Label _textLabel = null!;
     [Export] private AnimationPlayer _animationPlayer = null!;
     private ILog _log = new GDLog(nameof(DialogueUiController));
@@ -21,7 +22,8 @@ public partial class DialogueUiController: Control
     public override void _Ready()
     {
         DialogueManager?.RegisterDialogueController(this);
-        _textureRect.Connect("gui_input", new Callable(this, nameof(OnSkipDialogue)));
+        _backgroundImage.Connect("gui_input", new Callable(this, nameof(OnSkipDialogue)));
+        _animationPlayer.Connect("animation_finished", new Callable(this, nameof(OnAnimationFinished)));
 
     }
     
@@ -36,6 +38,20 @@ public partial class DialogueUiController: Control
     public void HideDialogue()
     {
         _animationPlayer.PlayBackwards("show_dialogue_window");
+    }
+
+    public void OnAnimationFinished(string animName)
+    {
+        if (animName == "show_dialogue_window")
+        {
+            _jumpingTriangle.Show();
+            _animationPlayer.Play("jumping_triangle");
+        }
+
+        if (IsShowingDialogue == false)
+        {
+            _jumpingTriangle.Hide();
+        }
     }
     
     public void OnSkipDialogue(InputEvent @event)
