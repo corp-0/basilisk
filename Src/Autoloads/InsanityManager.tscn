@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cybmdmiwilfeg"]
+
+[ext_resource type="Script" path="res://Src/Autoloads/InsanityManager.cs" id="1_enj8p"]
+
+[node name="InsanityManager" type="Node"]
+script = ExtResource("1_enj8p")
+DefaultInsanityPenalty = 10
+MaxInsanity = 100

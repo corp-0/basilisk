@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://xwpehm668n74"]
+[gd_scene load_steps=7 format=3 uid="uid://xwpehm668n74"]
 
 [ext_resource type="Script" path="res://Src/Scripts/Game.cs" id="1_0gsam"]
 [ext_resource type="PackedScene" uid="uid://elux2a4v6l7i" path="res://Src/Prefabs/Documents/Test1.tscn" id="2_vm4bj"]
 [ext_resource type="PackedScene" uid="uid://y4bt2pegafq0" path="res://Src/Prefabs/Gui/ToolsUi.tscn" id="2_vmc06"]
 [ext_resource type="PackedScene" uid="uid://h7xhsanesfa1" path="res://Src/Prefabs/Gui/DialogueUi.tscn" id="4_p6yas"]
 [ext_resource type="PackedScene" uid="uid://07vo1go3vlqc" path="res://Src/Prefabs/Gui/ShortMemoryUi.tscn" id="5_hdg4p"]
+[ext_resource type="PackedScene" uid="uid://cisgu8a2cpsbl" path="res://Src/Prefabs/Gui/DebugUi.tscn" id="6_jr4vx"]
 
 [node name="Game" type="Node2D" node_paths=PackedStringArray("_worldNode")]
 script = ExtResource("1_0gsam")
@@ -32,3 +33,6 @@ mouse_filter = 1
 [node name="DialogueUi" parent="Ui" instance=ExtResource("4_p6yas")]
 
 [node name="ShortMemoryUi" parent="Ui" instance=ExtResource("5_hdg4p")]
+
+[node name="DebugUi" parent="Ui" instance=ExtResource("6_jr4vx")]
+visible = false

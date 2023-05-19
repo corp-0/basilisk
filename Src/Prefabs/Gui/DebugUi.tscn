@@ -1,0 +1,57 @@
+[gd_scene load_steps=2 format=3 uid="uid://cisgu8a2cpsbl"]
+
+[ext_resource type="Script" path="res://Src/Scripts/Ui/DebugUi.cs" id="1_ykfdk"]
+
+[node name="DebugUi" type="Control" node_paths=PackedStringArray("Insanity")]
+layout_mode = 3
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -216.0
+offset_bottom = 720.0
+grow_horizontal = 0
+mouse_filter = 2
+script = ExtResource("1_ykfdk")
+Insanity = NodePath("VBoxContainer/IsanityInt/InsanityLvl")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="IsanityInt" type="HBoxContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+alignment = 1
+
+[node name="InsanityLvlLabel" type="Label" parent="VBoxContainer/IsanityInt"]
+layout_mode = 2
+text = "Insanity lvl:"
+
+[node name="InsanityLvl" type="Label" parent="VBoxContainer/IsanityInt"]
+layout_mode = 2
+text = "0"
+
+[node name="InsanityPercent" type="HBoxContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+alignment = 1
+
+[node name="InsanityLvlLabel" type="Label" parent="VBoxContainer/InsanityPercent"]
+layout_mode = 2
+text = "Insanity percent:"
+
+[node name="InsanityLvl" type="Label" parent="VBoxContainer/InsanityPercent"]
+layout_mode = 2
+text = "0%"
