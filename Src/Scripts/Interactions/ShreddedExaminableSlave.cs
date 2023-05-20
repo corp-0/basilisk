@@ -35,7 +35,9 @@ public partial class ShreddedExaminableSlave: BaseExaminable, IArrangeable
     
     private bool EvaluateRightPosition()
     {
-        return Math.Abs(_master!.Position.DistanceTo(Position) - _distanceFromMaster.Length()) < _tolerance;
+        Vector2 diff = (_master!.Position - Position);
+        return Math.Abs(diff.X - _distanceFromMaster.X) < _tolerance && 
+               Math.Abs(diff.Y - _distanceFromMaster.Y) < _tolerance;
     }
 
 
