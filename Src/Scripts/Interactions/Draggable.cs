@@ -1,3 +1,4 @@
+using System.Linq;
 using Basilisk.Autoloads;
 using Chickensoft.GoDotLog;
 using Chickensoft.GoDotNet;
@@ -14,7 +15,7 @@ public partial class Draggable : Area2D
 
 	private Vector2 _mouseOffset;
 	private readonly ILog _log = new GDLog(nameof(Draggable));
-	private bool _selected;
+	public bool Selected { get; set; }
 	private const string INPUT_EVENT = "input_event";
 	private const string MOUSE_DOWN = "mouse_down";
 	private Node2D Parent => GetParent<Node2D>();
@@ -29,28 +30,30 @@ public partial class Draggable : Area2D
 		};
 		AddToGroup("draggable");
 	}
-
+	
 	public void OnInputEvent(Node viewport, InputEvent @event, int shapeIndx)
 	{
 		if (PlayerToolState.CurrentTool != PlayerTool.Hand) return;
+		
+		if (GetTree().GetNodesInGroup("draggable").Any(x => IsSelected(x))) return;
 
 		if (@event.IsActionPressed(MOUSE_DOWN))
 		{
-			_selected = true;
+			Selected = true;
 			MakeTopMost();
 			_mouseOffset = GetParent<Node2D>().GlobalPosition - GetGlobalMousePosition();
-			_log.Print($"Draggable selected: {_selected}");
+			_log.Print($"Draggable selected: {Selected}");
 			return;
 		}
 
 		if (!@event.IsActionReleased(MOUSE_DOWN)) return;
-		_selected = false;
-		_log.Print($"Draggable selected: {_selected}");
+		Selected = false;
+		_log.Print($"Draggable selected: {Selected}");
 	}
 
 	public override void _PhysicsProcess(double delta)
 	{
-		if (!_selected) return;
+		if (!Selected) return;
 		var mousePos = GetGlobalMousePosition() + _mouseOffset;
 		GetParent<Node2D>().GlobalPosition = mousePos;
 	}
@@ -65,12 +68,19 @@ public partial class Draggable : Area2D
 			{
 				Parent.ZIndex++;
 				Parent.ZIndex++;
+				d.Priority++;
 			}
 			else
 			{
 				d.Parent.ZIndex = 0;
 				d.Parent.ZIndex = 0;
+				d.Priority = 0;
 			}
 		}
+	}
+
+	private bool IsSelected(Node target)
+	{
+		return target is Draggable { Selected: true} && target != this;
 	}
 }
