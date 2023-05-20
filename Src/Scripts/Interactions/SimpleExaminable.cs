@@ -1,5 +1,6 @@
 using Basilisk.Autoloads;
 using Basilisk.Models;
+using Chickensoft.GoDotNet;
 using Godot;
 using MonoCustomResourceRegistry;
 
@@ -8,6 +9,7 @@ namespace Basilisk.Interactions;
 [RegisteredType(nameof(SimpleExaminable), baseType:nameof(Area2D))]
 public partial class SimpleExaminable : BaseExaminable
 {
+	private InsanityManager InsanityManager => this.Autoload<InsanityManager>();
 	
 	public override void OnExamined(Node viewport, InputEvent @event, int shapeIndx)
 	{
@@ -25,6 +27,10 @@ public partial class SimpleExaminable : BaseExaminable
 				ClueId = ClueId
 			};
 			ShortTermMemoryManager.Add(concept);
+			if (IsCorrupted)
+			{
+				InsanityManager.AddInsanity();
+			}
 		}
 	}
 }

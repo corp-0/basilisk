@@ -1,7 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://elux2a4v6l7i"]
+[gd_scene load_steps=7 format=3 uid="uid://elux2a4v6l7i"]
 
 [ext_resource type="PackedScene" uid="uid://dsqfbvse1ufkb" path="res://Src/Prefabs/Documents/BaseDocument.tscn" id="1_yia0x"]
-[ext_resource type="Script" path="res://Src/Scripts/Interactions/CorruptedExaminable.cs" id="3_kuhu3"]
 [ext_resource type="Script" path="res://Src/Scripts/Interactions/SimpleExaminable.cs" id="3_vango"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ad7bk"]
@@ -33,9 +32,10 @@ shape = SubResource("RectangleShape2D_ad7bk")
 debug_color = Color(0.905882, 0.172549, 0.623529, 0.419608)
 
 [node name="daily_example_03" type="Area2D" parent="SimpleExaminables" index="1" node_paths=PackedStringArray("Shape")]
-script = ExtResource("3_kuhu3")
+script = ExtResource("3_vango")
 ConceptUniqueId = "daily_example_02"
-Conclusion = "They are concerned about time running out of time to finish their entry for the Godot Jam"
+Conclusion = "They are concerned about running out of time to finish their entry for the Godot Jam"
+IsCorrupted = true
 Shape = NodePath("CollisionShape2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SimpleExaminables/daily_example_03" index="0"]

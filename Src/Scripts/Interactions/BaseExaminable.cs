@@ -10,6 +10,9 @@ public abstract partial class BaseExaminable: Node2D, IExaminable
     [Export] public string ConceptUniqueId { get; private set; } = null!;
     [Export] public string Conclusion { get; private set; } = string.Empty;
     [Export] public string ClueId { get; private set; } = string.Empty;
+    
+    // Is this examinable corrupted? If so, it will add to the insanity meter when examined.
+    [Export] public bool IsCorrupted { get; private set; }
     [Export] public CollisionShape2D Shape { get; private set; } = null!;
     private Line2D _outline = null!;
     private Node2D Parent => GetParent<Node2D>().GetParent<Node2D>();

@@ -1,4 +1,5 @@
-﻿using Basilisk.Autoloads;
+﻿using System.Collections.Generic;
+using Basilisk.Autoloads;
 using Basilisk.Models;
 using Chickensoft.GoDotNet;
 using Godot;
@@ -6,15 +7,28 @@ using MonoCustomResourceRegistry;
 
 namespace Basilisk.Interactions;
 
-[RegisteredType(nameof(CorruptedExaminable), baseType: nameof(Area2D))]
-public partial class CorruptedExaminable: BaseExaminable
+[RegisteredType(nameof(ShreddedExaminableMaster), baseType: nameof(Area2D))]
+public partial class ShreddedExaminableMaster: BaseExaminable, IArrangeable
 {
+    public bool IsInRightPosition => EvaluateRightPosition();
+    private readonly List<ShreddedExaminableSlave> _slaves = new();
     private InsanityManager InsanityManager => this.Autoload<InsanityManager>();
+
+    public void RegisterSlave(ShreddedExaminableSlave slave)
+    {
+        _slaves.Add(slave);
+    }
+    
+    private bool EvaluateRightPosition()
+    {
+        return _slaves.TrueForAll(slave => slave.IsInRightPosition);
+    }
     
     public override void OnExamined(Node viewport, InputEvent @event, int shapeIndx)
     {
         if (PlayerToolState.CurrentTool != PlayerTool.MagnifyingGlass) return;
         if (!IsTopMost) return;
+        if (!IsInRightPosition) return;
 		
         if (@event.IsActionPressed(MOUSE_DOWN))
         {
@@ -27,7 +41,10 @@ public partial class CorruptedExaminable: BaseExaminable
                 ClueId = ClueId
             };
             ShortTermMemoryManager.Add(concept);
-            InsanityManager.AddInsanity();
+            if (IsCorrupted)
+            {
+                InsanityManager.AddInsanity();
+            }
         }
     }
 }
