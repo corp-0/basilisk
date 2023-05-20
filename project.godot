@@ -28,6 +28,7 @@ TutorialTracker="*res://Src/Autoloads/TutorialTracker.tscn"
 ShortTermemoryManager="*res://Src/Autoloads/ShortTermemoryManager.tscn"
 DialogueManager="*res://Src/Autoloads/DialogueManager.tscn"
 InsanityManager="*res://Src/Autoloads/InsanityManager.tscn"
+DraggableMouse="*res://Src/Prefabs/draggable_mouse.tscn"
 
 [display]
 
