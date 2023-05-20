@@ -1,11 +1,20 @@
-[gd_scene load_steps=7 format=3 uid="uid://xwpehm668n74"]
+[gd_scene load_steps=11 format=3 uid="uid://xwpehm668n74"]
 
 [ext_resource type="Script" path="res://Src/Scripts/Game.cs" id="1_0gsam"]
 [ext_resource type="PackedScene" uid="uid://elux2a4v6l7i" path="res://Src/Prefabs/Documents/Test1.tscn" id="2_vm4bj"]
 [ext_resource type="PackedScene" uid="uid://y4bt2pegafq0" path="res://Src/Prefabs/Gui/ToolsUi.tscn" id="2_vmc06"]
 [ext_resource type="PackedScene" uid="uid://h7xhsanesfa1" path="res://Src/Prefabs/Gui/DialogueUi.tscn" id="4_p6yas"]
 [ext_resource type="PackedScene" uid="uid://07vo1go3vlqc" path="res://Src/Prefabs/Gui/ShortMemoryUi.tscn" id="5_hdg4p"]
+[ext_resource type="Script" path="res://Src/Scripts/Ui/InsanityVignette.cs" id="5_mggrr"]
 [ext_resource type="PackedScene" uid="uid://cisgu8a2cpsbl" path="res://Src/Prefabs/Gui/DebugUi.tscn" id="6_jr4vx"]
+[ext_resource type="Shader" path="res://Src/Scripts/Shaders/VirtualInsanity.gdshader" id="7_mcel6"]
+[ext_resource type="Texture2D" uid="uid://fuce0jle5l4c" path="res://GameData/Graphics/Effects/mask_test.png" id="8_q22tv"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_p8qyr"]
+shader = ExtResource("7_mcel6")
+shader_parameter/intensity = 0.1
+shader_parameter/blur = 0.1
+shader_parameter/mask_texture = ExtResource("8_q22tv")
 
 [node name="Game" type="Node2D" node_paths=PackedStringArray("_worldNode")]
 script = ExtResource("1_0gsam")
@@ -19,6 +28,18 @@ position = Vector2(920, 256)
 [node name="Test2" parent="PilePositionMark" instance=ExtResource("2_vm4bj")]
 z_index = 1
 position = Vector2(-201, 159)
+
+[node name="ScreenShaders" type="CanvasLayer" parent="."]
+
+[node name="InsanityVignette" type="ColorRect" parent="ScreenShaders"]
+material = SubResource("ShaderMaterial_p8qyr")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("5_mggrr")
 
 [node name="Ui" type="CanvasLayer" parent="."]
 
@@ -39,14 +60,3 @@ mouse_filter = 1
 
 [node name="DebugUi" parent="Ui" instance=ExtResource("6_jr4vx")]
 visible = false
-
-[node name="ScreenShaders" type="CanvasLayer" parent="."]
-visible = false
-
-[node name="InsanityVignette" type="ColorRect" parent="ScreenShaders"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
