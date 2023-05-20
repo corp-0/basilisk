@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using Basilisk.Autoloads;
 using Chickensoft.GoDotLog;
@@ -20,7 +21,7 @@ public partial class Draggable : Area2D
 	private const string MOUSE_DOWN = "mouse_down";
 	private Node2D Parent => GetParent<Node2D>();
 	private PlayerToolState PlayerToolState => this.Autoload<PlayerToolState>();
-	
+
 	public override void _Ready()
 	{
 		Connect(INPUT_EVENT, new Callable(this, nameof(OnInputEvent)));
@@ -31,15 +32,15 @@ public partial class Draggable : Area2D
 		AddToGroup("draggable");
 	}
 	
+	
 	public void OnInputEvent(Node viewport, InputEvent @event, int shapeIndx)
 	{
-		if (PlayerToolState.CurrentTool != PlayerTool.Hand) return;
-		
-		if (GetTree().GetNodesInGroup("draggable").Any(x => IsSelected(x))) return;
+		if (PlayerToolState.CurrentTool != PlayerTool.Hand || Selected == false) return;
+
+		if (GetTree().GetNodesInGroup("draggable").Any(IsSelected)) return;
 
 		if (@event.IsActionPressed(MOUSE_DOWN))
 		{
-			Selected = true;
 			MakeTopMost();
 			_mouseOffset = GetParent<Node2D>().GlobalPosition - GetGlobalMousePosition();
 			_log.Print($"Draggable selected: {Selected}");
