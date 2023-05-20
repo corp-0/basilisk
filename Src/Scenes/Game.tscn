@@ -12,8 +12,8 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_p8qyr"]
 shader = ExtResource("7_mcel6")
-shader_parameter/intensity = 0.1
-shader_parameter/blur = 0.1
+shader_parameter/intensity = 0.4
+shader_parameter/blur = 0.074
 shader_parameter/mask_texture = ExtResource("8_q22tv")
 
 [node name="Game" type="Node2D" node_paths=PackedStringArray("_worldNode")]

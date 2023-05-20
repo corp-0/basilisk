@@ -15,6 +15,7 @@ public partial class InsanityVignette: ColorRect
     [Export] private float _hitIntensity = 1f;
     private ILog _log = new GDLog(nameof(InsanityVignette));
     [Export] private float _animDuration = 0.5f;
+    private float Offset => 0.4f;
 
     public override void _Ready()
     {
@@ -47,13 +48,13 @@ public partial class InsanityVignette: ColorRect
         if(newValue < _hitIntensity)
         {
             hitTween.TweenMethod(Callable.From<float>(SetShaderIntensity), oldValue,  _hitIntensity, _animDuration);
-            hitTween.TweenMethod(Callable.From<float>(SetShaderIntensity), _hitIntensity, newValue, _animDuration);
+            hitTween.TweenMethod(Callable.From<float>(SetShaderIntensity), _hitIntensity, newValue + Offset, _animDuration);
             hitTween.Play();
             return;
             
         }
         
-        hitTween.TweenMethod(Callable.From<float>(SetShaderIntensity), _hitIntensity, newValue, _animDuration);
+        hitTween.TweenMethod(Callable.From<float>(SetShaderIntensity), _hitIntensity, newValue + Offset, _animDuration);
         hitTween.Play();
     }
 }

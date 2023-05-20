@@ -1,7 +1,7 @@
 shader_type canvas_item;
 
 uniform sampler2D mask_texture: hint_default_black;
-uniform float intensity: hint_range(0.1, 1.0) = 0.5;
+uniform float intensity: hint_range(0.4, 1.6) = 0.5;
 uniform float blur: hint_range(0.0, 0.1) = 0.01;
 uniform sampler2D SCREEN_TEXTURE : hint_screen_texture, filter_linear_mipmap;
 
