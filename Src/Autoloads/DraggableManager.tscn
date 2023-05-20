@@ -1,0 +1,22 @@
+[gd_scene load_steps=2 format=3 uid="uid://6e1f65m0ni32"]
+
+[sub_resource type="CSharpScript" id="CSharpScript_1fxm5"]
+script/source = "using Basilisk.Interactions;
+using Godot;
+using MonoCustomResourceRegistry;
+
+namespace Basilisk.Autoloads;
+
+[RegisteredType(nameof(DraggableManager))]
+public partial class DraggableManager: Node
+{
+    public Draggable? CurrentDraggable { get; private set; }
+    
+    public void SetCurrentDraggable(Draggable? draggable)
+    {
+        CurrentDraggable = draggable;
+    }
+}"
+
+[node name="DraggableManager" type="Node"]
+script = SubResource("CSharpScript_1fxm5")

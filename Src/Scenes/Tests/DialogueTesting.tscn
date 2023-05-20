@@ -1,0 +1,47 @@
+[gd_scene load_steps=3 format=3 uid="uid://drh3jni7vl4pk"]
+
+[ext_resource type="PackedScene" uid="uid://h7xhsanesfa1" path="res://Src/Prefabs/Gui/DialogueUi.tscn" id="1_gv2ck"]
+[ext_resource type="Script" path="res://Src/Scripts/TestingScenes/DialogueTesting.cs" id="1_hvhxk"]
+
+[node name="DialogueTesting" type="Node2D" node_paths=PackedStringArray("ItemList")]
+script = ExtResource("1_hvhxk")
+ItemList = NodePath("Ui/Control/ItemList")
+
+[node name="Ui" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="Ui"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1280.0
+offset_bottom = 480.0
+
+[node name="Panel" type="Panel" parent="Ui/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Ui/Control/Panel"]
+layout_mode = 0
+offset_right = 1280.0
+offset_bottom = 62.0
+text = "Dialogue testing scene"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ItemList" type="ItemList" parent="Ui/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 61.0
+grow_horizontal = 2
+grow_vertical = 2
+allow_reselect = true
+auto_height = true
+max_columns = 5
+same_column_width = true
+
+[node name="DialogueUi" parent="Ui" instance=ExtResource("1_gv2ck")]

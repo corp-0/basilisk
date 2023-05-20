@@ -10,5 +10,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Src\Prefabs\" />
+    <Folder Include="Src\Scripts\Shaders\" />
   </ItemGroup>
 </Project>

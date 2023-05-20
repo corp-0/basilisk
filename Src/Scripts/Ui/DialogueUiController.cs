@@ -17,14 +17,13 @@ public partial class DialogueUiController: Control
     private ILog _log = new GDLog(nameof(DialogueUiController));
     public bool IsShowingDialogue { get; private set; }
 
-    private DialogueManager? DialogueManager => this.TryAutoload<DialogueManager>();
+    private DialogueManager DialogueManager => this.Autoload<DialogueManager>();
 
     public override void _Ready()
     {
-        DialogueManager?.RegisterDialogueController(this);
+        DialogueManager.DialoguedDequeued += ShowDialogue;
         _backgroundImage.Connect("gui_input", new Callable(this, nameof(OnSkipDialogue)));
         _animationPlayer.Connect("animation_finished", new Callable(this, nameof(OnAnimationFinished)));
-
     }
     
     public void ShowDialogue(DialogueModel dialogue)

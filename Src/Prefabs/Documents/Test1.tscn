@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://elux2a4v6l7i"]
+[gd_scene load_steps=8 format=3 uid="uid://elux2a4v6l7i"]
 
 [ext_resource type="PackedScene" uid="uid://dsqfbvse1ufkb" path="res://Src/Prefabs/Documents/BaseDocument.tscn" id="1_yia0x"]
+[ext_resource type="Script" path="res://Src/Scripts/Interactions/CorruptedExaminable.cs" id="3_kuhu3"]
 [ext_resource type="Script" path="res://Src/Scripts/Interactions/SimpleExaminable.cs" id="3_vango"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ad7bk"]
@@ -22,7 +23,7 @@ size = Vector2(520.25, 124)
 [node name="daily_example_01" type="Area2D" parent="SimpleExaminables" index="0" node_paths=PackedStringArray("Shape")]
 script = ExtResource("3_vango")
 ConceptUniqueId = "daily_example_01"
-Conclusion = "The daily example."
+Conclusion = "The Daily Example"
 Shape = NodePath("CollisionShape2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SimpleExaminables/daily_example_01" index="0"]
@@ -32,16 +33,16 @@ shape = SubResource("RectangleShape2D_ad7bk")
 debug_color = Color(0.905882, 0.172549, 0.623529, 0.419608)
 
 [node name="daily_example_03" type="Area2D" parent="SimpleExaminables" index="1" node_paths=PackedStringArray("Shape")]
-script = ExtResource("3_vango")
+script = ExtResource("3_kuhu3")
 ConceptUniqueId = "daily_example_02"
-Conclusion = "They are worried about time for the Godot jam running out."
+Conclusion = "They are concerned about time running out of time to finish their entry for the Godot Jam"
 Shape = NodePath("CollisionShape2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SimpleExaminables/daily_example_03" index="0"]
 z_index = 10
 position = Vector2(0, -128)
 shape = SubResource("RectangleShape2D_hhfgw")
-debug_color = Color(0.905882, 0.172549, 0.623529, 0.419608)
+debug_color = Color(1, 0.0627451, 0.0156863, 0.419608)
 
 [node name="daily_example_04" type="Area2D" parent="SimpleExaminables" index="2" node_paths=PackedStringArray("Shape")]
 script = ExtResource("3_vango")

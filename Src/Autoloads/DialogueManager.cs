@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Basilisk.Models;
 using Basilisk.Ui;
 using Chickensoft.GoDotLog;
@@ -13,9 +14,9 @@ public partial class DialogueManager: Node
 {
     private string DialoguesPath => "res://GameData/Dialogues/";
     private ILog _log = new GDLog(nameof(DialogueManager));
-    private List<DialogueModel> Dialogues { get; } = new();
+    public List<DialogueModel> Dialogues { get; } = new();
     private Queue<DialogueModel> DisplayingDialogues { get; } = new();
-    private DialogueUiController _dialogueUiController = null!;
+    public event Action<DialogueModel>? DialoguedDequeued;
 
     public override void _Ready()
     {
@@ -23,12 +24,7 @@ public partial class DialogueManager: Node
         InitialiseDialoguesDatabase();
         _log.Print($"Loaded {Dialogues.Count} dialogues");
     }
-    
-    public void RegisterDialogueController(DialogueUiController dialogueUiController)
-    {
-        _dialogueUiController = dialogueUiController;
-    }
-    
+
     public void QueueDialogue(string id)
     {
         if (!TryFindById(id, out var dialogue))
@@ -42,10 +38,10 @@ public partial class DialogueManager: Node
 
     public void StartDialogue()
     {
-        if (DisplayingDialogues.Count > 0 && !_dialogueUiController.IsShowingDialogue)
+        if (DisplayingDialogues.Count > 0)
         {
             var dialogue = DisplayingDialogues.Dequeue();
-            _dialogueUiController.ShowDialogue(dialogue);
+            DialoguedDequeued?.Invoke(dialogue);
         }
     }
 

@@ -13,9 +13,12 @@ _worldNode = NodePath("")
 
 [node name="PilePositionMark" type="Marker2D" parent="."]
 position = Vector2(920, 256)
-metadata/_edit_group_ = true
 
 [node name="Test1" parent="PilePositionMark" instance=ExtResource("2_vm4bj")]
+
+[node name="Test2" parent="PilePositionMark" instance=ExtResource("2_vm4bj")]
+z_index = 1
+position = Vector2(-201, 159)
 
 [node name="Ui" type="CanvasLayer" parent="."]
 
@@ -36,3 +39,14 @@ mouse_filter = 1
 
 [node name="DebugUi" parent="Ui" instance=ExtResource("6_jr4vx")]
 visible = false
+
+[node name="ScreenShaders" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="InsanityVignette" type="ColorRect" parent="ScreenShaders"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2

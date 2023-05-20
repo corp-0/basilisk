@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Src/Scripts/Ui/DebugUi.cs" id="1_ykfdk"]
 
-[node name="DebugUi" type="Control" node_paths=PackedStringArray("Insanity")]
+[node name="DebugUi" type="Control" node_paths=PackedStringArray("Insanity", "InsanityPercent")]
 layout_mode = 3
 anchors_preset = 1
 anchor_left = 1.0
@@ -13,6 +13,7 @@ grow_horizontal = 0
 mouse_filter = 2
 script = ExtResource("1_ykfdk")
 Insanity = NodePath("VBoxContainer/IsanityInt/InsanityLvl")
+InsanityPercent = NodePath("VBoxContainer/InsanityPercent/InsanityPercent")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1
@@ -48,10 +49,10 @@ custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 alignment = 1
 
-[node name="InsanityLvlLabel" type="Label" parent="VBoxContainer/InsanityPercent"]
+[node name="InsanityPercentLabel" type="Label" parent="VBoxContainer/InsanityPercent"]
 layout_mode = 2
 text = "Insanity percent:"
 
-[node name="InsanityLvl" type="Label" parent="VBoxContainer/InsanityPercent"]
+[node name="InsanityPercent" type="Label" parent="VBoxContainer/InsanityPercent"]
 layout_mode = 2
 text = "0%"
